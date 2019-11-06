@@ -11,7 +11,7 @@
  */
 const reader = require('readline-sync')
 
-const valeur1 = reader.questionInt('Valeur 1 :')
+const valeur1 = reader.questionInt('Valeur 1 : ')
 const valeur2 = reader.questionInt('Valeur 2 : ')
 
 console.log('Result : ' + (valeur1 + valeur2))
