@@ -1,0 +1,18 @@
+{
+  "name": "algorithmik",
+  "version": "1.0.0",
+  "description": "Some algorithmics with NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "algorithmic"
+  ],
+  "author": "IDea Factory",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
