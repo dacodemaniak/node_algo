@@ -5,12 +5,17 @@
  * @abstract Calcul d'un rendu de monnaie
  */
 
+/**
+ * 
+ * @param number montant 
+ * @param number divider 
+ * @return array
+ */
 function intDiv(montant, divider) {
-    return Math.trunc(montant / divider)
-}
-
-function modulo(valeur, divider) {
-    return valeur % divider
+    return [
+        Math.trunc(montant / divider),
+        montant % divider
+    ]
 }
 
 function toPositive(value) {
@@ -31,6 +36,12 @@ const reader = require('readline-sync');
 
 /**
  * @constant
+ * Array Types of money
+ */
+const caisses = [50, 20, 10, 5, 2]
+
+/**
+ * @constant
  * Number Montant versé par le client
  */
 const mttVerse = toPositive(reader.questionInt('Montant versé : '))
@@ -43,24 +54,21 @@ if (mttVerse < mttAPayer) {
         console.log('Merci beaucoup, bonne journée, à bientôt !')
     } else {
         let aRendre = mttVerse - mttAPayer
+        let rendus = [];
 
-        const billet20 = intDiv(aRendre, 20) // Appel de la fonction intDiv
+        for (let i = 0; i < caisses.length; i++) {
+            let result = intDiv(aRendre, caisses[i])
+            rendus.push(
+                [caisses[i], result[0]]
+            )
+            aRendre = result[1]
+        }
 
-        aRendre = modulo(aRendre, 20)
-
-        console.log('20 € => ' + billet20)
-        console.log('Nouveau à rendre : ' + aRendre)
-
-        const billet10 = intDiv(aRendre, 10)
-        aRendre = modulo(aRendre, 10)
-
-        console.log('10 € => ' + billet10)
-        console.log('Nouveau à rendre : ' + aRendre)
-
-        const coins = intDiv(aRendre, 2)
-        aRendre = modulo(aRendre, 2)
-
-        console.log('2 € => ' + coins)
-        console.log('Pour le personnel : ' + aRendre)
+        // Finally... maybe... if ever... why not...
+        let msg = '';
+        for (let i = 0; i < rendus.length; i++) {
+            msg += rendus[i][1] + ' * ' + rendus[i][0] + '€\n';
+        }
+        console.log(msg + '\nPour le personnel : ' + aRendre)
     }
 }
