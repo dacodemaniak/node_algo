@@ -34,10 +34,11 @@ const mttAPayer = 26
  */
 const reader = require('readline-sync');
 
-/**
- * @constant
- * Array Types of money
- */
+reader.setDefaultOptions({ encoding: 'utf-8' })
+    /**
+     * @constant
+     * Array Types of money
+     */
 const caisses = [50, 20, 10, 5, 2]
 
 /**
